@@ -10,7 +10,7 @@ const port = process.env.PORT || 5001
 const userController = require('./controllers/user')
 const articlesController = require('./controllers/Articles')
 
-app.set('view engine','ejs')
+app.set('view engine', 'ejs')
 
 // app.use('/static', express.static(__dirname + '/public'));
 app.use(express.static(`${__dirname}/public`))
@@ -23,7 +23,7 @@ app.use(session({
 }))
 
 
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(flash())
 
@@ -34,10 +34,10 @@ app.use((req, res, next) => {
 	next()
 })
 
-app.get('/', articlesController.homePage) 
+app.get('/', articlesController.homePage)
 
 function redirectBack(req, res) {
-	res.redirect('back')	
+	res.redirect('back')
 }
 
 app.get('/login', userController.login)
@@ -47,7 +47,7 @@ app.get('/logout', userController.logout)
 app.get('/register', userController.register)
 app.post('/register', userController.handleRegister, redirectBack)
 
-app.post('/articles',articlesController.add)
+app.post('/articles', articlesController.add)
 
 app.get('/article-page/:id', articlesController.articlePage)
 
